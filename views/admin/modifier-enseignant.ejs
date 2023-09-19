@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-learning</title>
+    <link rel="shortcut icon" href="../img/logo2.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+    <section id="header" class="header">
+        <a href="/espace-administrateur" class="brand"><img src="../img/admin-logo.jpg" alt="LOGO" class="rounded-circle"><%= profilAdmin.nom %></a>
+    
+        <ul id="navbar">     
+            <li><a href="/gestion-des-etudiants" ><i class="fa-solid fa-user-graduate"></i>étudiants</a></li>
+            <li><a href="/gestion-des-enseignants" ><i class="fa-solid fa-person-chalkboard"></i>enseignants</a></li>
+            <li><a href="/gestion-des-filieres" ><i class="fa-solid fa-layer-group"></i>filière</a></li>
+            <li><a href="/gestion-des-classes" ><i class="fa-solid fa-users-rectangle"></i>Classes</a></li>
+            <li><a href="/gestion-des-modules" ><i class="fa-solid fa-file"></i>Modules</a></li>
+            <li><a href="/mon-profil-admin" ><i class="fa-solid fa-user-tie"></i> Mon profil</a></li>
+            <li><a href="/messagerie-admin" ><i class="fa-solid fa-bell"></i><span>12</span> </a></li>
+            <li><a href="/logout" onclick="return confirm('Déconnexion en cours... OK ?')"><i class="fa-solid fa-right-from-bracket"></i>Déconnexion</a></li>
+            
+            <a href="#" id="close"><i class="fa-regular fa-circle-xmark"></i></a>  
+        </ul>
+        <div id="mobile">
+            <i id="bar" class="fas fa-outdent"></i>
+        </div>
+    </section>
+   
+    <section id="banner" class="section-p">
+        <h1>Mise à jour enseignant</h1>
+    </section>
+
+   <section id="add_formulaire" class="section-p">
+        <form action="/update_teacher" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="grade">Civilité</label>
+                    <select name="civilite" id="civilite" class="form-control">
+                        <option selected>Selectionner la civilité</option>
+                        <% if(teacher.civilite == "M.") { %> 
+                            <option value="M." selected>Monsieur</option>
+                            <option value="Mme">Madame</option>
+                            <option value="Mlle">Mademoiselle</option>
+                        <% } else if(teacher.civilite == "Mme") { %> 
+                            <option value="M.">Monsieur</option>
+                            <option value="Mme" selected>Madame</option>
+                            <option value="Mlle">Mademoiselle</option>
+                        <% } else if(teacher.civilite == "Mlle") { %> 
+                            <option value="M.">Monsieur</option>
+                            <option value="Mme">Madame</option>
+                            <option value="Mlle" selected>Mademoiselle</option>
+                        <% } %>   
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" name="nom"  class="form-control" placeholder="Nom *" required value="<%= teacher.nom %>">
+                </div>
+                <div class="col-md-4">
+                    <label for="prenom">Prénom</label>
+                    <input type="text" id="prenom" name="prenom" class="form-control" placeholder="Prénom *" required value="<%= teacher.prenom %>">
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="adresse">Adresse</label>
+                    <input type="text" id="adresse" name="adresse" class="form-control" placeholder="Adresse *" required value="<%= teacher.adresse %>">
+                </div>
+               
+                <div class="col-md-4">
+                    <label for="telephone">Téléphone</label>
+                    <input type="number" id="telephone" name="telephone" class="form-control" placeholder="Téléphone *" value="<%= teacher.telephone %>">
+                </div>
+                <div class="col-md-4">
+                    <label for="grade">Grade</label>
+                    <input type="text" name="grade" id="grade" required class="form-control" placeholder="Grade *" value="<%= teacher.grade %>">
+                </div>
+            </div>
+          
+           
+            <input type="text" name="id" value="<%= teacher._id %>" hidden>
+            
+            <div class="form-btn">
+                <button class="normal">enrégistrer les modifications</button>
+            </div>
+            
+
+        </form>
+   </section>
+
+   
+   <%- include('layout/alert') %>
+
+   
+
+   <footer>
+    <p>Tout droit réservé <span>projet.pfe - elearning - </span>  By SAMY <i class="fa-solid fa-face-smile"></i></p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-learning</title>
+    <link rel="shortcut icon" href="img/logo2.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+    <section id="header" class="header">
+        <a href="/espace-etudiant" class="brand"><img src="<%= profilEtudiant.image %>" alt="LOGO" class="rounded-circle"><%= profilEtudiant.nom %></a>
+    
+        <ul id="navbar" class="etudiant">     
+           
+            <li><a href="" data-bs-toggle="modal" data-bs-target="#listModule"><i class="fa-solid fa-book"></i>Consulter mes cours</a></li>
+            <li><a href="/espace-etudiant?page=mon-profil" ><i class="fa-solid fa-user-tie"></i> Mon profil</a></li>
+            <li><a href="/espace-etudiant?page=ma-messagerie" ><i class="fa-solid fa-bell"></i><span>0</span> </a></li>
+            <li><a class="logout" href="/logout" onclick="return confirm('Déconnexion en cours... Oui/Non ?')"><i class="fa-solid fa-right-from-bracket"></i>Déconnexion</a></li>
+            
+            <a href="#" id="close"><i class="fa-regular fa-circle-xmark"></i></a>  
+        </ul>
+        <div id="mobile">
+            <i id="bar" class="fas fa-outdent"></i>
+        </div>
+       
+    </section>
+    <div class="modal fade" id="listModule" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title text-center" id="staticBackdropLabel">Selectionner un module</h5>
+            <a type="" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+            </div>
+            <div class="modal-body">
+               
+                <div class="list-group">
+                    <% if(affectations == "") { %> 
+                        <h3 style="text-align: center;color: #34526e"> <span style="text-align: center;color: #ED2B2A">Oops... !</span>  <br> Aucun module n'a été affecté à votre groupe</h3>
+                    <% }else { %>    
+                        <% affectations.forEach((affectation) => { %> 
+                            <a href="/espace-etudiant?page=mes-cours&content=<%= affectation.module %>" style="font-size: 18px;color: #34526e" class="list-group-item list-group-item-action"> <strong><%= affectation.module %></strong></a>
+                        <% }) %>
+                    <% } %>        
+                </div>
+            </div>
+            
+        </div>
+        </div>
+    </div>

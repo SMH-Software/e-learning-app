@@ -1,0 +1,30 @@
+<%- include('layout/header_admin') %>
+
+   
+    <section id="banner" class="section-p">
+        <h1>Ajouter un nouveau module</h1>
+    </section>
+
+   <section id="add_formulaire" class="section-p">
+        <form action="/add_module" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="text" id="libelle" name="libelle"  class="form-control" placeholder="Libelle *" required>
+                </div>
+               
+            </div>
+           
+            
+
+            <div class="form-btn">
+                <button class="normal">enrégistrer maintenant</button>
+            </div>
+            
+
+        </form>
+   </section>
+
+   
+
+   
+<%- include('layout/footer') %>

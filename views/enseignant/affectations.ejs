@@ -1,0 +1,27 @@
+<%- include('header_enseignant') %>
+
+   
+    <section id="banner" class="section-p">
+        <h1>Mes affectations (<%= count %>)</h1>
+    </section>
+
+    <% if(affectations == "") { %> 
+        <section id="empty" class="section-p">
+            <img src="img/affect.jpg" alt="" >
+            <h1>Aucune affectation n'a été trouvée (0)</h1>
+        </section>
+    <% }else { %>
+        <section id="list-module" class="section-p">
+            <div class="box-module">
+                <h2 >Affectations</h2>
+               
+               <% affectations.forEach((affectation) => { %> 
+                        <a href="" target="_blank"><%= affectation.classe + " - " + affectation.module %></a>
+               <% }) %>
+            </div>
+          
+        </section>
+    <% } %>
+
+   
+<%- include('../layout/footer') %>

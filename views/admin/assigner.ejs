@@ -1,0 +1,43 @@
+<%- include('header_admin') %>
+
+    <section id="banner" class="section-p">
+        <h1>Assigner groupe et module</h1>
+    </section>
+
+    <section id="add_formulaire" class="section-p">
+        <form action="/assign_teacher" method="post">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="grade">Groupe</label>
+                    <select name="classe" id="civilite" class="form-control">
+                        <option selected>Selectionner un groupe</option>
+                        <% classes.forEach((classe) => { %> 
+                            <option value="<%= classe.libelle %>"><%= classe.libelle %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="grade">Modules</label>
+                    <select name="module" id="civilite" class="form-control">
+                        <option selected>Selectionner un module</option>
+                        <% modules.forEach((module) => { %> 
+                            <option value="<%= module.libelle %>"><%= module.libelle %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <input type="text" name="id" value="<%= id %>" hidden>
+               
+            </div>
+             
+            <div class="form-btn">
+                <button class="normal">enrégistrer maintenant</button>
+            </div>
+            
+
+        </form>
+   </section>
+
+    
+   
+   
+<%- include('../layout/footer') %>

@@ -1,0 +1,39 @@
+<%- include('header_enseignant') %>
+
+   
+    <section id="banner" class="section-p">
+        <h1>Publier un nouveau cours</h1>  
+    </section>
+
+    <section id="new-course" class="section-p">
+        <form action="/add_course" method="post" enctype="multipart/form-data">
+            <select name="groupe" required>
+                <option selected>Selectionner un groupe</option>
+                <% groupes.forEach((groupe) => { %>
+                    <option value="<%= groupe %>"> <%= groupe %></option>
+                <% }) %>
+            </select>
+            <select name="module" required >
+                <option selected>Selectionner un module</option>
+                <% allAssign.forEach((module) => { %>
+                    <option value="<%= module.module %>"> <%= module.module + " - " +  module.classe %></option>
+                <% }) %>
+            </select>
+            <select name="type" required >
+                <option selected>Selectionner un type</option>
+                <option value="Cours">Cours</option>
+                <option value="TD">TD</option>
+                <option value="TP">TP</option>
+            </select>
+            <input type="file" name="cours" required>
+            
+            <button class="normal">Publier maintenant</button>
+        </form>
+    </section>
+
+    
+    
+    
+
+   
+<%- include('../layout/footer') %>

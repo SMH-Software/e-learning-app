@@ -1,0 +1,41 @@
+<%- include('header_enseignant') %>
+
+   
+    <section id="banner" class="section-p">
+        <h1>Cours publiés (<%= count %>)</h1>
+    </section>
+
+    <% if(allCours == "") { %> 
+        <section id="empty" class="section-p">
+            <img src="img/empty4.png" alt="" >
+            <h1>Aucun cours n'a été publié (0)</h1>
+        </section>
+    <% }else { %>
+        <section id="courses" class="section-p">
+            <div class="box-filter">
+                <h2><i class="fa-solid fa-filter"></i> Filtrer</h2>
+                <% modules.forEach((module) => { %>
+                    <div class="box-class">
+                        <a href=""><i class="fa-solid fa-file"></i><%= module %> </a>
+                    </div>
+                <% }) %>
+                
+            </div>
+            <div class="box-courses">    
+                <% allCours.forEach((cours) => { %>
+                    <div class="course-element">
+                        <a href="<%= cours.cours %>" target="_blank"><img src="img/pdf-logo.png" height="50" alt=""> <%= cours.cours %></a>
+                        <div>
+                            <a href="/delete_course?id=<%= cours._id %>" onclick="return confirm('Ce cours va être supprimer. OK ?')"><i class="fa-solid fa-comment"></i>  </a>  
+                            <a href="/delete_course?id=<%= cours._id %>" onclick="return confirm('Ce cours va être supprimer. OK ?')"><i class="fa-regular fa-trash-can"></i>  </a>  
+                        </div>
+                    </div>
+                   
+                <% }) %>
+            </div>
+        </section>
+        
+    <% } %>
+
+   
+<%- include('../layout/footer') %>

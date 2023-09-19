@@ -1,0 +1,30 @@
+<%- include('layout/header_admin') %>
+
+    <section id="banner" class="section-p">
+        <h1>Selectionner un élément à ajouter</h1>
+    </section>
+
+    <section id="add-box" class="section-p">
+        <div class="box" onclick="window.location.href='/nouvel-etudiant'">
+            <i class="fa-solid fa-user-graduate"></i>
+            <p>étudiant(e)</p>
+        </div>
+        <div class="box" onclick="window.location.href='/nouvel-enseignant'">
+            <i class="fa-solid fa-person-chalkboard"></i>
+            <p>enseignant(e)</p>
+        </div>
+        <div class="box" onclick="window.location.href='/nouvel-ajout?content=filiere'">
+            <i class="fa-solid fa-layer-group"></i>
+            <p>filière</p>
+        </div>
+        <div class="box" onclick="window.location.href='/nouvel-ajout?content=classe'">
+            <i class="fa-solid fa-users-rectangle"></i>
+            <p>groupe</p>
+        </div>
+        <div class="box" onclick="window.location.href='/nouvel-ajout?content=module'">
+            <i class="fa-solid fa-file"></i>
+            <p>module</p>
+        </div>
+    </section>
+   
+<%- include('layout/footer') %>

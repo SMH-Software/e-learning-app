@@ -1,0 +1,34 @@
+<%- include('header_admin') %>
+   
+    <section id="banner" class="section-p">
+        <h1>Mise à jour image</h1>
+    </section>
+
+   <section id="add_formulaire" class="section-p">
+        <form action="/update_student_image" method="post" enctype="multipart/form-data">
+            
+            <div class="row">
+                <div class="col-md-12">
+                   <center><img src="<%= student.image %>" alt="" class="rounded-circle mb-3" width="200"></center>
+                    <input type="file" id="image" name="image" class="form-control" required>
+                </div>
+               
+            </div>
+          
+           
+            <input type="text" name="id" value="<%= student._id %>" hidden>
+            
+            <div class="form-btn">
+                <button class="normal">enrégistrer les modifications</button>
+            </div>
+            
+
+        </form>
+   </section>
+
+   
+
+
+   
+
+   <%- include('../layout/footer') %>

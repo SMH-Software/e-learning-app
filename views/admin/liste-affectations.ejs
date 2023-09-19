@@ -1,0 +1,39 @@
+<%- include('header_admin') %>
+
+   
+    <section id="banner" class="section-p">
+        <h1>Les affectations (<%= count %>)</h1>
+    </section>
+
+    <% if(affectations == "") { %> 
+        <section id="empty" class="section-p">
+            <img src="img/empty3.jpg" alt="" >
+            <h1>Aucune affectation disponible</h1>
+        </section>
+    <% }else { %>
+        <section id="courses" class="section-p">
+            <div class="box-filter">
+                <h2><i class="fa-solid fa-filter"></i> Filtrer</h2>
+              
+                <div class="box-class">
+                    <a href=""><i class="fa-solid fa-users-rectangle"></i>Groupe</a>
+                </div>
+              
+            </div>
+            <div class="box-courses">    
+                <% affectations.forEach((affectation) => { %>
+                    <div class="course-element">
+                        <a href=""><%= affectation.classe + " - " + affectation.module %></a>
+                        <div>
+                            <a href="/delete_affectation?id=<%= affectation._id %>" onclick="return confirm('Ce cours va être supprimer. OK ?')"><i class="fa-regular fa-trash-can"></i>  </a>  
+                        </div>
+                    </div>
+                   
+                <% }) %>
+            </div>
+        </section>
+        
+    <% } %>
+
+   
+<%- include('../layout/footer') %>

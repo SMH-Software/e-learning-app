@@ -1,0 +1,41 @@
+<%- include('header_admin') %>
+
+    <section id="banner" class="section-p">
+        <h1>Toutes les Filières</h1>
+        <a href="/gestion-des-filieres?action=nouvelle-filiere"><i class="fa-solid fa-layer-group"></i> Ajouter une filière</a>
+    </section>
+    <% if(filieres == "") { %> 
+        <section id="empty" class="section-p">
+            <img src="img/noresult.jpg" alt="" >
+            <h1>Aucune filière n'a été enrégistrée (0)</h1>
+        </section>
+    <% } else{ %> 
+        <section id="student" class="section-p model">
+            <div class="student-filter">
+                <h2><i class="fa-solid fa-filter"></i>Trier par</h2>
+                <p><i class="fa-solid fa-arrow-up-a-z"></i>ordre</p>
+            </div>
+    
+            <div class="student-card">
+                <% filieres.forEach((filiere) => { %> 
+                    <div class="student-box">
+                        <p><i class="fa-solid fa-layer-group"></i> <%= filiere.libelle %></p>
+                        <div class="student-option">
+                            <a href="/gestion-des-filieres?action=maj-filiere&id=<%= filiere._id %>"><i class="fa-solid fa-pen-to-square"></i> </a>
+                        </div>
+                    </div>
+                    
+                <% }) %>
+               
+            </div>
+           
+          
+        </section>
+    
+    <% } %>
+
+   
+
+ 
+   
+<%- include('../layout/footer') %>

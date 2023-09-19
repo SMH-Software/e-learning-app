@@ -1,0 +1,11 @@
+<% if(locals.message) { %>
+    <script>
+        const message = '<%= message %>'
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: message,
+            timer: 5000
+        })
+    </script>
+<%}%>

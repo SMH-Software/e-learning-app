@@ -1,0 +1,45 @@
+<%- include('header_admin') %>
+
+    <section id="banner" class="section-p">
+        <h1>Tous les Modules</h1>
+        <a href="/gestion-des-modules?action=nouveau-module"><i class="fa-solid fa-file"></i> Ajouter un module</a>
+    </section>
+    <% if(modules == "") { %> 
+        <section id="empty" class="section-p">
+            <img src="img/noresult.jpg" alt="" >
+            <h1>Aucun module n'a été enrégistré (0)</h1>
+        </section>
+    <% } else{ %> 
+        <section id="student" class="section-p model">
+            <div class="student-filter">
+                <h2><i class="fa-solid fa-filter"></i>Trier par</h2>
+                <p><i class="fa-solid fa-arrow-up-a-z"></i>ordre</p>
+            </div>
+    
+            <div class="student-card">
+                <% modules.forEach((module) => { %> 
+                    <div class="student-box">
+                        <p><i class="fa-solid fa-file"></i> <%= module.libelle %></p>
+                        <div class="student-option">
+                            <a title="Affecter ce module à un groupe" href="/gestion-des-modules?action=affectation-module&id=<%= module._id %>" hidden><i class="fa-solid fa-link"></i></a>
+                            <a title="Modifier le module" href="/gestion-des-modules?action=maj-module&id=<%= module._id %>"><i class="fa-solid fa-pen-to-square"></i> </a>
+                            <a title="liste des affectations" href="/gestion-des-modules?action=liste-des-affectations&libelle=<%= module.libelle %>"><i class="fa-solid fa-file-circle-check"></i> </a>
+                           
+                        </div>
+                        
+                    </div>
+                    
+                <% }) %>
+               
+            </div>
+           
+          
+        </section>
+    
+    <% } %>
+
+   
+
+ 
+   
+<%- include('../layout/footer') %>

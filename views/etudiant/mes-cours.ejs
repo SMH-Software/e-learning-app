@@ -1,0 +1,59 @@
+<%- include('header_etudiant') %>
+
+   
+    <section id="banner" class="section-p">
+        <h1><%= content %></h1>
+    </section>
+
+    <section id="enseignant-info" class="section-p">
+        
+        <div class="body">
+            <h2>Enseignant</h2>
+            <div class="body-content">
+                <img src="<%= enseignant.image %>" alt="">
+            
+                <div class="info-box">
+                    <p><%= enseignant.nom + " " + enseignant.prenom %></p>
+                    <p><%= enseignant.email %></p>
+                    <a href="/espace-etudiant?page=envoi-de-message&destinataire=<%= enseignant.email %>"><i class="fa-solid fa-paper-plane"></i> Contacter l'enseignant</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="list-module" class="section-p">
+        <div class="box-module">
+            <h2 >Cours</h2>
+           <% if(cours == "") { %> 
+                <img src="img/empty5.jpg" alt="">
+                <h3>Oops...! Contenu indisponible</h3>
+           <% }else { 
+                cours.forEach((cours) => { %> 
+                    <a href="<%= cours.cours %>" target="_blank"><img src="img/pdf-logo.png" height="30" alt=""><%= cours.cours %></a>
+           <% }) } %>
+        </div>
+        <div class="box-module">
+            <h2>TD</h2>
+            <% if(tds == "") { %> 
+                <img src="img/empty5.jpg" alt="">
+                <h3>Oops...! Contenu indisponible</h3>
+           <% }else { 
+                tds.forEach((td) => { %> 
+                    <a href="<%= td.cours %>" target="_blank"><img src="img/pdf-logo.png" height="30" alt=""><%= td.cours %></a>
+           <% }) } %>
+        </div>
+        <div class="box-module">
+            <h2>TP</h2>
+            <% if(tps == "") { %> 
+                <img src="img/empty5.jpg" alt="">
+                <h3>Oops...! Contenu indisponible</h3>
+           <% }else { 
+                tps.forEach((tp) => { %> 
+                    <a href="<%= tp.cours %>" target="_blank"><img src="img/pdf-logo.png" height="30" alt=""><%= tp.cours %></a>
+           <% }) } %>
+        </div>
+    </section>
+
+
+   
+<%- include('../layout/footer') %>

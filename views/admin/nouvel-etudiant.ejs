@@ -1,0 +1,91 @@
+<%- include('header_admin') %>
+
+   
+    <section id="banner" class="section-p">
+        <h1>Ajouter un nouvel étudiant</h1>
+    </section>
+
+   <section id="add_formulaire" class="section-p">
+        <form action="/add_student" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-4">
+                    <select name="civilite" id="civilite" class="form-control">
+                        <option selected>Selectionner la civilité</option>
+                        <option value="M.">Monsieur</option>
+                        <option value="Mme">Madame</option>
+                        <option value="Mlle">Mademoiselle</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" id="nom" name="nom"  class="form-control" placeholder="Nom *" required>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" id="prenom" name="prenom" class="form-control" placeholder="Prénom *" required>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="text" id="adresse" name="adresse" class="form-control" placeholder="Adresse *" required>
+                </div>
+                <div class="col-md-4">
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Adresse E-mail *" required>
+                </div>
+                <div class="col-md-4">
+                    <input type="number" id="telephone" name="telephone" class="form-control" placeholder="Téléphone *">
+                </div>
+            </div>
+          
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="daten">Date de naissance</label>
+                    <input type="date" name="date_naissance" id="daten" required class="form-control" placeholder="Date de naissance *">
+                </div>
+                <div class="col-md-6">
+                    <label for="lieun">Lieu de naissance</label>
+                    <input type="text" name="lieu_naissance" id="lieun" required class="form-control" placeholder="Lieu de naissance *">
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="filiere">Filière</label>
+                    <select name="filiere" id="" class="form-control">
+                        <option selected>Selectionner une filière</option>
+                        <% filieres.forEach((filiere) => { %>
+                            <option value="<%= filiere.libelle %>"><%= filiere.libelle %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="groupe">Groupe</label>
+                    <select name="groupe" id="" class="form-control">
+                        <option selected>Selectionner un groupe</option>
+                        <% groupes.forEach((groupe) => { %>
+                            <option value="<%= groupe.libelle %>"><%= groupe.libelle %></option>
+                        <% }) %>
+                    </select>
+                   
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="photo">Charger une photo</label>
+                    <input type="file" name="image" id="photo" required class="form-control">
+                </div>
+                
+            </div>
+            <div class="form-btn">
+                <button class="normal">enrégistrer maintenant</button>
+            </div>
+            
+
+        </form>
+   </section>
+
+   
+
+
+   
+<%- include('../layout/footer') %>

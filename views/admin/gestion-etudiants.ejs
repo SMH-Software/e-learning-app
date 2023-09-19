@@ -1,0 +1,78 @@
+
+<%- include('header_admin') %>
+
+    <section id="banner" class="section-p">
+        <h1>Tous les Etudiants (<%= count %>)</h1>
+        <a href="/gestion-des-etudiants?action=nouvel-etudiant"><i class="fa-solid fa-user-graduate"></i> Ajouter un étudiant</a>
+    </section>
+
+    <% if(students == "") { %> 
+        <section id="empty" class="section-p">
+            <img src="img/empty.jpg" alt="" >
+            <h1>Aucun étudiant n'a été enrégistré (0)</h1>
+        </section>
+    <% }else{ %> 
+        <section id="student" class="section-p">
+            <div class="student-filter">
+                <h2><i class="fa-solid fa-filter"></i>Trier par</h2>
+                <p><i class="fa-solid fa-arrow-up-a-z"></i>Nom</p>
+                <p><i class="fa-solid fa-users-rectangle"></i>Classe</p>
+                <p><i class="fa-solid fa-layer-group"></i>Filière</p>
+                
+            </div>
+    
+            <div class="student-card">
+                <% students.forEach((student) => { %> 
+                    <div class="student-box">
+                        <img src="<%= student.image %>" alt="" class="rounded-circle">
+                        <p><%= student.matricule %> </p>
+                        <p><%= student.civilite + " " + student.nom %> </p>  
+                      
+                        <p><i class="fa-solid fa-users-rectangle"></i> <%= student.filiere + "-" + student.groupe %></p> 
+                        <div class="student-option">
+                            <a href="/gestion-des-etudiants?action=archiver&id=<%= student._id %>" title="Archiver" onclick="return confirm('<%= student.nom %> sera archivé. OK ?')"><i class="fa-regular fa-file-zipper"></i> </a>
+                          
+                            <a href="/gestion-des-etudiants?action=modifier&id=<%= student._id %>" title="Modifier"><i class="fa-solid fa-user-pen"></i> </a>
+                           
+                            <a href="" title="Voir informations" data-bs-toggle="modal" data-bs-target="#<%= student.matricule %>"><i class="fa-solid fa-circle-info"></i> </a>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="<%= student.matricule %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title text-center" id="staticBackdropLabel">Etudiant N° <%= student.matricule %></h5>
+                            <a type="" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+                            </div>
+                            <div class="modal-body">
+                               
+                                <img src="<%= student.image %>" alt="" class="rounded-circle">
+                                <p onclick="window.location.href='/gestion-des-etudiants?action=modifier-image&id=<%= student._id %>'"><i class="fa-solid fa-pen-to-square"></i> Modifier image</p>
+                                
+                                <div class="list-group">
+                                  
+                                    <a href="#" class="list-group-item list-group-item-action"><strong>Nom :</strong> <%= student.nom %></a>
+                                    <a href="#" class="list-group-item list-group-item-action"><strong>Prénom :</strong> <%= student.prenom %></a>
+                                    <a href="#" class="list-group-item list-group-item-action"><strong>Adresse e-mail :</strong> <%= student.email %></a>
+                                    <a href="#" class="list-group-item list-group-item-action"><strong>Téléphone :</strong> <%= student.telephone %></a>
+                                    <a href="#" class="list-group-item list-group-item-action"><strong>Adresse :</strong> <%= student.adresse %></a>
+                                    <a href="#" class="list-group-item list-group-item-action"><strong>Né(e) le :</strong> <%= student.dateNaissance + " à " + student.lieuNaissance %></a>
+                                    <a href="#" class="list-group-item list-group-item-action"><strong>Filière - Groupe :</strong> <%= student.filiere + " - " + student.groupe %></a>
+                                    <a href="#" class="list-group-item list-group-item-action"><strong>Inscrit le </strong> <%= student.dateInscription %></a>
+                                  </div>
+                            </div>
+                            
+                        </div>
+                        </div>
+                    </div>
+                <% })  %> 
+               
+            </div>
+           
+          
+        </section>
+    <% }%> 
+    
+   
+   
+<%- include('../layout/footer') %>

@@ -1,0 +1,33 @@
+<%- include('header_etudiant') %>
+
+   
+    <section id="banner" class="section-p">
+        <h1>Vos informations personnelles</h1>
+    </section>
+
+    <section id="profil" class="section-p">
+       <div class="profil-body">
+            <div class="profil-avatar">
+                <img src="<%= profilEtudiant.image %>" alt="" class="rounded-circle">
+                <h4>
+                    <%= profilEtudiant.nom + " " + profilEtudiant.prenom %><br>
+                    <span><%= profilEtudiant.filiere + " - " + profilEtudiant.groupe %></span>
+                </h4>
+                
+            </div>
+        
+            <div class="profil-info">
+                <p><i class="fa-solid fa-envelope"></i> <%= profilEtudiant.email %></p>
+                <p><i class="fa-solid fa-phone"></i> (+216) <%= profilEtudiant.telephone %></p>
+                <p><i class="fa-solid fa-location-dot"></i> <%= profilEtudiant.adresse %></p>
+                <a href=""><i class="fa-brands fa-facebook"></i></a>
+                <a href=""><i class="fa-brands fa-linkedin"></i></a> 
+            </div>
+       </div>
+
+       
+    </section>
+
+
+   
+<%- include('../layout/footer') %>

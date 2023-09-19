@@ -1,0 +1,39 @@
+<%- include('header_admin') %>
+
+   
+    <section id="banner" class="section-p">
+        <h1><%= title %></h1>        
+    </section>
+
+   
+    <section id="add_formulaire" class="section-p">
+        <form action="/add_affectation" method="post">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="module">Module</label>
+                    <input type="text" id="module" name="module"  class="form-control" placeholder="Libelle *" value="<%= content.libelle %>" readonly>
+                </div>
+               <div class="col-md-6">
+                    <label for="groupe">Groupe</label>
+                    <select name="groupe" id="groupe" class="form-select">
+                        <option selected>Selectionner un groupe</option>
+                        <% groupes.forEach((groupe) => { %> 
+                            <option value="<%= groupe.libelle %>"><%= groupe.libelle %></option>
+                        <% }) %>
+                    </select>
+               </div>
+            </div>
+           
+            <div class="form-btn">
+                <button class="normal">enrégistrer maintenant</button>
+            </div>
+            
+
+        </form>
+   </section>
+   
+
+   
+
+   
+<%- include('../layout/footer') %>

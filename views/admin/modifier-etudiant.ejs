@@ -1,0 +1,89 @@
+<%- include('header_admin') %>
+   
+    <section id="banner" class="section-p">
+        <h1>Mise à jour Etudiant</h1>
+    </section>
+
+   <section id="add_formulaire" class="section-p">
+        <form action="/update_student" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="grade">Civilité</label>
+                    <select name="civilite" id="civilite" class="form-control">
+                        <option selected>Selectionner la civilité</option>
+                        <% if(student.civilite == "M.") { %> 
+                            <option value="M." selected>Monsieur</option>
+                            <option value="Mme">Madame</option>
+                            <option value="Mlle">Mademoiselle</option>
+                        <% } else if(student.civilite == "Mme") { %> 
+                            <option value="M.">Monsieur</option>
+                            <option value="Mme" selected>Madame</option>
+                            <option value="Mlle">Mademoiselle</option>
+                        <% } else if(student.civilite == "Mlle") { %> 
+                            <option value="M.">Monsieur</option>
+                            <option value="Mme">Madame</option>
+                            <option value="Mlle" selected>Mademoiselle</option>
+                        <% } %>   
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" name="nom"  class="form-control" placeholder="Nom *" required value="<%= student.nom %>">
+                </div>
+                <div class="col-md-4">
+                    <label for="prenom">Prénom</label>
+                    <input type="text" id="prenom" name="prenom" class="form-control" placeholder="Prénom *" required value="<%= student.prenom %>">
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="adresse">Adresse</label>
+                    <input type="text" id="adresse" name="adresse" class="form-control" placeholder="Adresse *" required value="<%= student.adresse %>">
+                </div>
+               
+                <div class="col-md-6">
+                    <label for="telephone">Téléphone</label>
+                    <input type="number" id="telephone" name="telephone" class="form-control" placeholder="Téléphone *" value="<%= student.telephone %>">
+                </div>
+        
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="filiere">Filière</label>
+                    <select name="filiere" id="filiere" class="form-control">
+                        <option selected>Selectionner une filière</option>
+                        <% filiere.forEach((fil) => { %>
+                            <option value="<%= fil.libelle %>" <%= fil.libelle == student.filiere ? 'selected':'' %> > <%= fil.libelle %></option>
+                        <% }) %>
+                      
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="groupe">Groupe</label>
+                    <select name="groupe" id="groupe" class="form-control">
+                        <option selected>Selectionner un groupe</option>
+                        <% groupe.forEach((grp) => { %>
+                            <option value="<%= grp.libelle %>" <%= grp.libelle == student.groupe ? 'selected':'' %> > <%= grp.libelle %></option>
+                        <% }) %>
+                      
+                    </select>
+                </div>
+                
+            </div>
+
+          
+           
+            <input type="text" name="id" value="<%= student._id %>" hidden>
+            
+            <div class="form-btn">
+                <button class="normal">enrégistrer les modifications</button>
+            </div>
+            
+
+        </form>
+   </section>
+
+ 
+
+<%- include('../layout/footer') %>

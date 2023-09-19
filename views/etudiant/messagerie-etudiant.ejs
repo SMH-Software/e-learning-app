@@ -1,0 +1,79 @@
+<%- include('header_etudiant') %>
+
+
+    <section id="banner" class="section-p">
+        <h1>Boite de réception</h1>
+    </section>
+
+   <section id="message" class="section-p">
+         
+           <div class="row">
+              <div class="col-md-6">
+                  <h1>Message(s) envoyé(s) (<%= countEnvoye %>)</h1>
+                  <% if(messageEnvoye == "") { %> 
+                      <h4 class="text-center">Aucun message envoyé</h4>
+                  <% }else { 
+                     messageEnvoye.forEach((messageE) => { %>
+                        <p type="button" data-bs-toggle="modal" data-bs-target="#<%= messageE.objet %>">
+                          <span> Cliquez pour voir le message...</span>
+                          <i class="fa-regular fa-trash-can"></i>
+                        </p>
+                        <div class="modal fade " id="<%= messageE.objet %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Message</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                  <p><%= messageE.message %></p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                  <% }) } %>
+              </div>
+              <div class="col-md-6">
+                <h1>Message(s) reçu(s) (<%= countRecu %>)</h1>
+                <% if(messageRecu == "") { %> 
+                    <h4 class="text-center">Aucun message reçu</h4>
+                <% }else { 
+                  messageRecu.forEach((messageR) => { %>
+                      <p type="button" data-bs-toggle="modal" data-bs-target="#<%= messageR.objet %>">
+                        <span> Cliquez pour voir le message...</span>
+                        <i class="fa-regular fa-trash-can"></i>
+                      </p>
+                      <div class="modal fade " id="<%= messageR.objet %>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="staticBackdropLabel">Message</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p><%= messageR.message %></p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                <% }) } %>
+            </div>
+             
+           </div>
+
+           
+           
+       
+   </section>
+   
+  
+   
+<%- include('../layout/footer') %>
